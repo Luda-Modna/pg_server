@@ -31,7 +31,7 @@ class User {
       const selectQuery = `
       SELECT *
       FROM users
-      WHERE ${id}
+      WHERE id = ${id}
     `;
       const foundUsers = await User.pool.query(selectQuery);
       return foundUsers.rows[0];
@@ -44,7 +44,7 @@ class User {
       const insertQuery = `
        INSERT INTO users (first_name, last_name, email, tel)
        VALUES ('${firstName}', '${lastName}', '${email}', '${tel}')
-       WHERE ${id}
+       WHERE id = ${id}
        RETURNING *
         `;
       const updatedUser = await User.pool.query(insertQuery);
@@ -58,7 +58,7 @@ class User {
       const deleteQuery = `
       DELETE
       FROM users
-      WHERE ${id}
+      WHERE id = ${id}
       RETURNING *
     `;
       const deletedUser = await User.pool.query(deleteQuery);
