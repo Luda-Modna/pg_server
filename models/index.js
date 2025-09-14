@@ -11,10 +11,14 @@ const connectionOptions = {
 };
 
 const pool = new Pool(connectionOptions);
+pool.connect(err => {
+  if (!err) {
+    console.log('DB OK');
+  }
+});
 
 process.on('beforeExit', () => pool.end());
 
 User.pool = pool;
-
 
 module.exports = { User, Phone };
