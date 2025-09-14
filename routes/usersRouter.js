@@ -3,13 +3,13 @@ const { Router } = require('express');
 const userRouter = Router();
 
 userRouter
-  .patch('/')
+  .route('/')
   .post((req, res) => {})
   .get((req, res) => {});
 
 
   userRouter
-  .patch('/:id')
+  .route('/:id')
   .get((req, res) => {})
   .patch((req, res) => {})
   .delete((req, res) => {});

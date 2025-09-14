@@ -3,12 +3,12 @@ const { Router } = require('express');
 const phonesRouter = Router();
 
 phonesRouter
-  .patch('/')
+  .route('/')
   .post((req, res) => {})
   .get((req, res) => {});
 
 phonesRouter
-  .patch('/:id')
+  .route('/:id')
   .get((req, res) => {})
   .patch((req, res) => {})
   .delete((req, res) => {});
