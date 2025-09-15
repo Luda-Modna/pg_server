@@ -22,3 +22,5 @@ Content-Type: application/json
     "email":"mail1@mail.com",
     "tel":"+3809871234567890"
 }
+
+GET http://localhost:4000/api/users?page=2&results=5
