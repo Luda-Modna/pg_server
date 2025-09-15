@@ -8,7 +8,17 @@ Content-Type: application/json
     "firstName":"First",
     "lastName":"Last",
     "email":"mail1@mail.com",
-    "tel":"+380987654321"
+    "tel":"+380987654325"
 }
 
 GET http://localhost:4000/api/users
+
+POST http://localhost:4000/api/users
+Content-Type: application/json
+
+{
+    "firstName":"First",
+    "lastName":"Last",
+    "email":"mail1@mail.com",
+    "tel":"+3809871234567890"
+}
