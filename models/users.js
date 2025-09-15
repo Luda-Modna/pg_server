@@ -39,7 +39,7 @@ class User {
       const foundUsers = await User.pool.query(selectQuery);
       return foundUsers.rows[0];
     } catch (err) {
-      console.log('err :>> ', err);
+      throw new Error(err.detail);
     }
   }
   static async updateById (id, { firstName, lastName, email, tel }) {
@@ -53,7 +53,7 @@ class User {
       const updatedUser = await User.pool.query(insertQuery);
       return updatedUser.rows[0];
     } catch (err) {
-      console.log(err);
+      throw new Error(err.detail);
     }
   }
   static async deleteById (id) {
@@ -67,7 +67,7 @@ class User {
       const deletedUser = await User.pool.query(deleteQuery);
       return deletedUser.rows[0];
     } catch (err) {
-      console.log('err :>> ', err);
+      throw new Error(err.detail);
     }
   }
 }

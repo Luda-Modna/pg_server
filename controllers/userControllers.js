@@ -1,6 +1,6 @@
 const { User } = require('./../models');
 
-module.exports.createUser = async (req, res) => {
+module.exports.createUser = async (req, res, next) => {
   const { body } = req;
   try {
     const createUser = await User.create(body);
@@ -9,11 +9,11 @@ module.exports.createUser = async (req, res) => {
     }
     res.status(201).send(createUser);
   } catch (err) {
-    res.status(500).send('Server Eror');
+    next(err);
   }
 };
 
-module.exports.getAllUsers = async (req, res) => {
+module.exports.getAllUsers = async (req, res, next) => {
 
   const {pagination} = req
   
@@ -21,11 +21,11 @@ module.exports.getAllUsers = async (req, res) => {
     const foundUsers = await User.getAll(pagination);
     res.status(200).send(foundUsers);
   } catch (err) {
-    res.status(500).send('Server Eror');
+    next(err);
   }
 };
 
-module.exports.getByIdUser = async (req, res) => {
+module.exports.getByIdUser = async (req, res, next) => {
   const { id } = req.params;
 
   try {
@@ -35,9 +35,9 @@ module.exports.getByIdUser = async (req, res) => {
     }
     res.status(200).send(foundUser);
   } catch (err) {
-    res.status(500).send('Server Eror');
+    next(err);
   }
 };
 
-module.exports.updateUser = (req, res) => {};
-module.exports.deleteUser = (req, res) => {};
+module.exports.updateUser = (req, res, next) => {};
+module.exports.deleteUser = (req, res, next) => {};
