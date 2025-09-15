@@ -3,13 +3,14 @@ class User {
     try {
       const insertQuery = `
          INSERT INTO users (first_name, last_name, email, tel)
-         VALUES ('${firstName}', '${lastName}', '${email}', '${tel}')
-         RETURNING *
-          `;
-      const createdUser = await User.pool.query(insertQuery);
+      VALUES ($1, $2, $3, $4)
+      RETURNING *
+    `;
+      const values = [firstName, lastName, email, tel];
+      const createdUser = await User.pool.query(insertQuery, values);
       return createdUser.rows[0];
     } catch (err) {
-      console.log(err);
+      throw new Error(err.detail);
     }
   }
 
@@ -18,12 +19,14 @@ class User {
       const selectAllQuery = `
           SELECT *
           FROM users
-          LIMIT ${limit} OFFSET ${offset}
+          ORDER BY id
+          LIMIT $1 OFFSET $2
         `;
-      const foundUsers = await User.pool.query(selectAllQuery);
+      const values = [limit, offset];
+      const foundUsers = await User.pool.query(selectAllQuery, values);
       return foundUsers.rows;
     } catch (err) {
-      console.log('err :>> ', err);
+      throw new Error(err.detail);
     }
   }
   static async getById (id) {
